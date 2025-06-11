@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>kekule-test</title>
+
+<link rel="stylesheet" type="text/css" href="./kekule/themes/default/kekule.css">
+</head><body>
+<div style="text-align: center;"><big><big><big><span style="font-weight: bold;">Kekule test</span></big></big></big><br>
+</div>
+<table style="width: 704px; height: 60px; text-align: left; margin-left: auto; margin-right: auto;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td><input class="kekradio" id="radid1" name="kekradio" app="Viewer" scr="script data/symmetric_ch2cl2.spt" type="radio"><label for="kekradio">Test</label></td>
+<td colspan="1" rowspan="2">
+<div id="chemViewer" style="width: 600px; height: 400px;" data-widget="Kekule.ChemWidget.Viewer2D" data-enable-toolbar="true"></div>
+</td>
+</tr>
+<tr>
+<td>button</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: center;"></div>
+<!--script src="kekule/kekule.min.js"></script-->
+    <script src="Kekulejs-master/demos/libs/kekule/kekule.js?module=chemWidget,algorithm"></script>
+<script>
+function getChemViewer()
+{
+  return Kekule.Widget.getWidgetById('chemViewer');
+};
+function showMolecule(mol)
+{
+  getChemViewer().setChemObj(mol);
+};
+
+var Viewer;
+Viewer = Kekule.Widget.getWidgetById('chemViewer');
+var url = 'data/untitled.mol';
+Kekule.IO.loadUrlData(url, function(mol, success){
+if (success)
+    {
+      console.log('Loading from ' + url + ' Successful');
+      showMolecule(mol);
+    }
+    else
+    {
+      console.log('Loading from ' + url + ' Failed');
+      showMolecule(null);
+    }
+    });
+
+document.getElementById("radid1").onclick=function(){
+try{
+var Viewer;
+Viewer = Kekule.Widget.getWidgetById('chemViewer');
+
+var mol1 = Viewer.getChemObj();
+console.log("getcoord2d"+mol1.getCoord2D());
+for (var i = 0, l = mol1.getNodeCount(); i < l; ++i)
+{
+    var node = mol1.getNodeAt(i);
+    console.log('node ' + i, node.getClassName(),
+                node.getLabel(),node.getBaseCoord(2,true));
+}
+    console.log(mol1.isCoordDependent());
+    
+    mol1.getNodeAt(0).setCoord2D({x:10.0, y:10.0});
+// Need to Update the Viewer here.    
+}
+    catch(err){
+        console.log(err)
+    }
+    
+};
+radiobtn = document.getElementById("radid1");
+radiobtn.checked = false;
+</script>
+
+</body></html>
