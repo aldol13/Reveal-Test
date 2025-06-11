@@ -1,0 +1,7 @@
+//load data/ch2cl2.log;
+model 1.11;
+reset;center {0.0 0.0 0.5873275}; rotate z -1.06; rotate y 87.67; rotate z 95.68;
+vibration on;
+vibration 3.0;
+vector on; vector 0.1 ;vector scale 2.0;color vector yellow;
+spin on;

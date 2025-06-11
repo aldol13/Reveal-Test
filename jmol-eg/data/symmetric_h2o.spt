@@ -1,0 +1,4 @@
+load data/h2o.log
+model 1.4;
+vector on; vector 0.1 ;vector scale 2.0; color vector yellow;
+spin on;

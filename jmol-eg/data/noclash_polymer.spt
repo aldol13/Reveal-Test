@@ -1,0 +1,8 @@
+load data/noclash_polymer_small.pdb;
+rotate z 90.26; rotate y 64.83; rotate z -91.77;
+
+for (var i=1 ; i <=60 ; i++ ) {
+	translate {-0.1 0.0 0.0} ({:a})
+	contact ({:a and _C}) ({:b and _C}) full
+	delay .1
+}
